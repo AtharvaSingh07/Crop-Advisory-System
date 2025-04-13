@@ -1,0 +1,127 @@
+.footer {
+    color: #D9D9D9;
+    background-color: #1f1f1f;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    padding: 40px 8vw;
+    padding-top: 60px;
+    text-align: center;
+}
+
+/* Footer Content Grid */
+.footer-content {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 60px;
+}
+
+/* Footer Sections */
+.footer-content-left,
+.footer-content-center,
+.footer-content-right {
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    gap: 15px;
+}
+
+/* Footer Headings */
+.footer-content-left h2,
+.footer-content-center h2,
+.footer-content-right h2 {
+    color: white;
+    font-size: 22px;
+    font-weight: 600;
+    position: relative;
+}
+
+/* Underline Effect */
+.footer-content-left h2::after,
+.footer-content-center h2::after,
+.footer-content-right h2::after {
+    content: "";
+    width: 40px;
+    height: 3px;
+    background-color: #ff4c24;
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    border-radius: 2px;
+}
+
+/* Footer Links */
+.footer-content-left ul li,
+.footer-content-center ul li,
+.footer-content-right ul li {
+    margin-bottom: 10px;
+    list-style: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.footer-content-left ul li:hover,
+.footer-content-center ul li:hover,
+.footer-content-right ul li:hover {
+    color: #ff4c24;
+}
+
+/* Social Media Icons */
+.footer-social-icons {
+    display: flex;
+    gap: 15px;
+    margin-top: 10px;
+}
+
+.footer-social-icons img {
+    width: 35px;
+    transition: transform 0.3s ease, filter 0.3s ease;
+    filter: grayscale(80%);
+}
+
+.footer-social-icons img:hover {
+    transform: scale(1.1);
+    filter: grayscale(0%);
+}
+
+/* Divider */
+.footer hr {
+    width: 100%;
+    height: 2px;
+    background-color: #444;
+    border: none;
+    margin: 20px 0;
+}
+
+/* Copyright Text */
+.footer-copyright {
+    text-align: center;
+    font-size: 14px;
+    color: #bbb;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 750px) {
+    .footer-content {
+        display: flex;
+        flex-direction: column;
+        gap: 25px;
+        text-align: center;
+        align-items: center;
+    }
+
+    .footer-content-left,
+    .footer-content-center,
+    .footer-content-right {
+        align-items: center;
+    }
+
+    .footer-content-left h2::after,
+    .footer-content-center h2::after,
+    .footer-content-right h2::after {
+        left: 50%;
+        transform: translateX(-50%);
+    }
+}

@@ -1,0 +1,54 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #f7fdf7;
+  margin: 0;
+  padding: 2rem;
+}
+
+h1 {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 2rem;
+  color: #2d572c;
+}
+
+input[type="text"] {
+  padding: 10px;
+  width: 250px;
+  font-size: 1rem;
+  border: 2px solid #ccc;
+  border-radius: 8px;
+  transition: 0.3s ease;
+}
+
+input[type="text"]:hover,
+input[type="text"]:focus {
+  border-color: #6aaa64;
+  outline: none;
+  box-shadow: 0 0 5px rgba(106, 170, 100, 0.5);
+}
+
+button {
+  margin-top: 10px;
+  padding: 10px 16px;
+  background-color: #6aaa64;
+  border: none;
+  color: white;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #588b58;
+}
+
+#outputBox {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f2f2f2;
+  border-radius: 12px;
+  border-left: 6px solid #6aaa64;
+}
