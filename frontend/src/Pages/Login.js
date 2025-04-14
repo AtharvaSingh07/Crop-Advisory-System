@@ -28,12 +28,18 @@ function Login() {
       formData.password === storedUser.password
     ) {
       alert("Login successful");
+
+      // ✅ Set token to allow access to protected routes
+      localStorage.setItem("token", "mock-token");
+
+      // Remember user if checkbox checked
       if (formData.remember) {
         localStorage.setItem("rememberedUser", JSON.stringify(formData));
       } else {
         localStorage.removeItem("rememberedUser");
       }
-      navigate("/AdvisoryDashboard"); // Navigate here after login
+
+      navigate("/AdvisoryDashboard");
     } else {
       alert("Invalid credentials");
     }
@@ -91,7 +97,10 @@ function Login() {
         <button type="submit">Login</button>
         <p className="auth-toggle">
           Don't have an account?{" "}
-          <span onClick={() => navigate("/signup")} style={{ cursor: "pointer", color: "#007bff" }}>
+          <span
+            onClick={() => navigate("/signup")}
+            style={{ cursor: "pointer", color: "#007bff" }}
+          >
             Signup
           </span>
         </p>

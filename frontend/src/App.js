@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
 import Login from "./Pages/Login";
 import Signup from "./Pages/Signup";
@@ -13,12 +13,11 @@ function App() {
   const [advice, setAdvice] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsAuthenticated(!!token);
-  }, []);
+  // 🔑 Dynamically check authentication
+  const isAuthenticated = () => {
+    return !!localStorage.getItem("token");
+  };
 
   const handleChange = (e) => {
     setFormData({
@@ -55,98 +54,26 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<Navigate to="/signup" />} />
-        
         <Route path="/signup" element={<Signup />} />
-        
         <Route path="/login" element={<Login />} />
 
         <Route
           path="/AdvisoryDashboard"
           element={
-            isAuthenticated ? (
-              <AdvisoryDashboard />
+            isAuthenticated() ? (
+              <AdvisoryDashboard
+                formData={formData}
+                handleChange={handleChange}
+                handleSubmit={handleSubmit}
+                advice={advice}
+                loading={loading}
+                error={error}
+              />
             ) : (
               <Navigate to="/login" />
             )
           }
         />
-
-        {/* Optional: Inline version of your advisory system (if needed) */}
-        {/* <Route
-          path="/advisory"
-          element={
-            <div style={{
-              minHeight: "100vh",
-              background: "#fffef5",
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "flex-start",
-              paddingTop: "40px",
-              fontFamily: "'Poppins', sans-serif"
-            }}>
-              <div style={{ padding: "30px", textAlign: "center" }}>
-                <h1 style={{ color: "#2d572c" }}>🌱 Crop Rotation Advisory System</h1>
-
-                <form onSubmit={handleSubmit} style={{ marginBottom: "20px" }}>
-                  <label>Current Crop:</label><br />
-                  <input
-                    type="text"
-                    name="currentCrop"
-                    placeholder="e.g., paddy"
-                    value={formData.currentCrop}
-                    onChange={handleChange}
-                    required
-                    style={{
-                      padding: "8px",
-                      width: "250px",
-                      marginBottom: "10px",
-                      borderRadius: "5px"
-                    }}
-                  /><br />
-
-                  <label>Soil Type:</label><br />
-                  <input
-                    type="text"
-                    name="soilType"
-                    placeholder="e.g., red"
-                    value={formData.soilType}
-                    onChange={handleChange}
-                    required
-                    style={{
-                      padding: "8px",
-                      width: "250px",
-                      marginBottom: "10px",
-                      borderRadius: "5px"
-                    }}
-                  /><br />
-
-                  <button
-                    type="submit"
-                    style={{
-                      padding: "10px 20px",
-                      borderRadius: "6px",
-                      backgroundColor: "#4caf50",
-                      color: "#fff",
-                      border: "none"
-                    }}
-                  >
-                    {loading ? "Fetching..." : "Get Advice"}
-                  </button>
-                </form>
-
-                <h3 style={{ color: "#2d572c" }}>🧠 Advisory Output:</h3>
-                <div style={{
-                  background: "#eef5ee",
-                  padding: "15px",
-                  borderRadius: "8px",
-                  minHeight: "50px"
-                }}>
-                  {error ? <span style={{ color: "red" }}>{error}</span> : advice}
-                </div>
-              </div>
-            </div>
-          }
-        /> */}
       </Routes>
     </Router>
   );
